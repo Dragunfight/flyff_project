@@ -1,0 +1,23 @@
+<header>
+    <nav id="navbar">
+        <div class="flex-nav">
+            <a class="nav-logo">
+                <img src='{{ asset("uploads/flyff-logo.png"|default('defaultimage.png')) }}' alt="flyff-logo">
+            </a>
+            <div id="burgerbutton">
+                <span class="burger-toggle">&#8801;</span>
+            </div>
+            <div class="nav-list">
+                <ul>
+                    <li><a href="{{ path('app_home') }}">Accueil</a></li>
+                    <li><a href="{{ path('app_wiki') }}">Wiki</a></li>
+                    <li><a href="{{ path('app_ladder') }}">Classement</a></li>
+                    <li><a href="{{ path('app_download') }}">Téléchargement</a></li>
+                    <li><a href="{{ path('app_donate') }}">Donation</a></li>
+                    <li><a href="{{ path('app_vote') }}">Vote</a></li>
+                    <li><a href="{{ path('app_shop') }}">Boutique</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

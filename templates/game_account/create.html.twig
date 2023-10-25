@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ form_start(accountcreateform) }}
+        {{ form_row(accountcreateform.nickname) }}
+        {{ form_row(accountcreateform.accountName) }}
+        {{ form_row(accountcreateform.plainPassword, {
+            label: 'Password'
+        }) }}
+    {{ form_end(accountcreateform) }}
+{% endblock %}

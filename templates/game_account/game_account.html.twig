@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello GameAccountController!{% endblock %}
+
+{% block body %}
+    <div> 
+        <h2>Vos comptes de jeu </h2>
+            {% for gameAccount in user.gameAccounts %}
+                <div>
+                    <p>{{ gameAccount.nickname }}</p>
+                    {% for character in gameAccount.characters %}
+                        <p>{{ character.characterName }}</p>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Boutique{% endblock %}
+
+{% block body %}
+    <div class="banner">
+        <div class="banner-content">
+            <h2>Shop</h2>
+            <span>Boutique vous permettant d'acquérir des items exclusifs</span>
+        </div>    
+    </div>
+    <main class="main-container">
+        <div class="card-flex flex-container">
+            <div class="filter-container">
+                <div class="box-shadow">
+                    <h2>Filtre</h2>
+                    <ul class="category-list">
+                        <li><a href="{{ path('app_shop') }}">All</a></li>
+                        {% for category in categories %}
+                            <li><a href="{{ path('app_shop', {'category': category.id }) }}">{{ category.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="flex-container item-list"> 
+                {% for product in products %}
+                    <div class="item-card">
+                        <div class="form-content">
+                            <img src="{{ asset("uploads/shop/" ~ product.image|default('defaultimage.png')) }}" alt="{{ product.name }}">
+                            <p>{{ product.name }}</p>
+                            <p>{{ product.price }} CP</p>
+                            <form action="{{ path('app_add_cart', { id : product.id }) }}">
+                                <div class="input-box">
+                                    <input id="addButton{{product.id}}" type="submit" value="Ajouter"></input>
+                                </div>
+                            </form>
+                        </div>   
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="cart-container">
+                <div class="box-shadow">
+                    <h2>Panier</h2>
+                    <ul class="cart-list">
+                        {% for cartproduct in cartproducts %}
+                            <li>
+                                <div class="flex-container cart-item">
+                                    <img src="{{ asset("uploads/shop/" ~ cartproduct.image|default('defaultimage.png')) }}" alt="{{ cartproduct.name }}">
+                                    <p>{{cartproduct.name}}</p>
+                                    {% if app.session.get("cart")[cartproduct.id] is defined %}
+                                        <p> x{{ app.session.get("cart")[cartproduct.id] }} </p>
+                                    {% endif %}
+                                    <a href="{{ path('app_delete_cart', { id: cartproduct.id }) }}" class="delete-icon"><i class="fa-solid fa-trash"></i></a>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <form class="cart-validation" action="{{ path('app_order_validation') }}">
+                        <div class="input-box">
+                            <input type="submit" id="validation" value="Commmander"></input>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    {# <div class="modale hidden">
+        <button class="close-modale">&times;</button>
+    </div>
+    <div class="overlay hidden"></div> #}
+{% endblock %}
+

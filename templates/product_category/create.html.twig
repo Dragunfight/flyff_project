@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="banner">
+        <div class="banner-content">
+            <h2>Create</h2>
+            <span>Création de catégories produits</span>
+        </div>    
+    </div>
+    <main class="main-container">
+        <div class="form-card">
+            <div class="form-content">
+                <h2>CREATE</h2>
+                {{ form_start(productCategoryForm) }}
+                    {{ form_row(productCategoryForm.name, {
+                        label: 'Ajouter une catégorie'
+                    }) }}
+                    <div class="input-box">
+                        <input type="submit" value="Create">
+                    </div>
+                {{ form_end(productCategoryForm) }}
+            </div>
+        </div>
+    </main>
+{% endblock %}

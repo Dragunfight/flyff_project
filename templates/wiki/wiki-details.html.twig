@@ -1,0 +1,32 @@
+<main class="main-container">
+    <ul id="postbox">
+        {% for post in posts %}
+            <li class="card-flex">
+                <div class="card">
+                    <div class="post-img">
+                        {% if post.image starts with "http" %}
+                            <img src='{{ post.image|default('defaultimage.png') }}'>
+                        {% else %}
+                            <img src='{{ asset("uploads/posts/" ~ post.image|default('defaultimage.png')) }}' alt="image">
+                        {% endif %}
+                    </div>
+                    <div class="postcontent-flex">
+                        <div class="content">
+                            <h3>{{ post.title }}</h3>
+                            <p> Créé le {{ post.createdAt|date("d/m/Y") }} </p>
+                        </div>
+                        <p> {{ post.content|striptags|replace({'&nbsp;': ''}) }} </p>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <div class="admin-tools">
+                                <div class="admin-tools">
+                                    <a href="{{ path('app_post_update', { id: post.id }) }}"><i class="fa-solid fa-pen"></i></a>
+                                    <a href="{{ path('app_post_delete', { id: post.id }) }}"><i class="fa-solid fa-trash"></i></a>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</main>

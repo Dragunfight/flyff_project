@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create Products{% endblock %}
+
+{% block body %}
+    <div class="banner">
+        <div class="banner-content">
+            <h2>Create</h2>
+            <span>Création de produits</span>
+        </div>    
+    </div>
+    <main class="main-container">
+        <div class="form-card">
+            <div class="form-content">
+                <h2>CREATE</h2>
+                {{ form_start(productform) }}
+                    {{ form_row(productform.categories) }}
+                    {{ form_row(productform.name) }}
+                    {{ form_row(productform.description) }}
+                    {{ form_row(productform.price) }}
+                    {{ form_row(productform.image) }}
+                    <div class="input-box">
+                        <input type="submit" value="Create">
+                    </div>
+                {{ form_end(productform) }}
+            </div>
+        </div>
+    </main>
+{% endblock %}
+

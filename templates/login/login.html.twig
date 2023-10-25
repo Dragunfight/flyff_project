@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="banner">
+        <div class="banner-content">
+            <h2>Login</h2>
+            <span>Connectez vous pour accéder à toutes les fonctionnalités</span>
+        </div>    
+    </div>
+    <main class="main-container">
+        <div class="form-card">
+            <div class="form-content">
+                <h2>LOGIN</h2>
+                <form class="form" action="{{ path('app_login') }}" method="post">
+                    <div class="input-box">
+                        <label for="username"></label>
+                        <input type="text" id="username" name="_username" required>
+                        <i>Username</i>
+                    </div>
+                    <div class="input-box">
+                        <label for="password"></label>
+                        <input type="password" id="password" name="_password" required>
+                        <i>Password</i>
+                    </div>
+                    <div class="input-box">
+                        <input type="submit" value="Login">
+                    </div>
+                    <div class="register-box">
+                        <p>Vous n'avez pas encore de compte? <a href="{{ path('app_registration') }}">Register</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+{% endblock %}

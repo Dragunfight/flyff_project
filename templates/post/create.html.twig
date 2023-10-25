@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="banner">
+        <div class="banner-content">
+            <h2>Create</h2>
+            <span>Création de posts</span>
+        </div>    
+    </div>
+    <main class="main-container">
+        <div class="form-card">
+            <div class="form-content">
+                <h2>CREATE</h2>
+                {{ form_start(createpostform) }}
+                    {{ form_row(createpostform.categories) }}
+                    {{ form_row(createpostform.title) }}
+                    {{ form_row(createpostform.content) }}
+                    {{ form_row(createpostform.image) }}
+                    <div class="input-box">
+                        <input type="submit" value="Create">
+                    </div>
+                {{ form_end(createpostform) }}
+            </div>
+        </div>
+    </main>
+{% endblock %}

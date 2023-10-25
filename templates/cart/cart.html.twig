@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CartController!{% endblock %}
+
+{% block body %}
+    <div class="banner">
+        <div class="banner-content">
+            <h2>Cart</h2>
+            <span>Vous trouverez ici les objets dans votre panier</span>
+        </div>    
+    </div>
+    <main class="main-container">
+        <div class="box-shadow">
+            <h2>Panier</h2>
+            <ul class="cart-list">
+                {% for cartproduct in cartproducts %}
+                    <li>
+                        <div class="flex-container cart-item">
+                            <img src="{{ asset("uploads/shop/" ~ cartproduct.image|default('defaultimage.png')) }}" alt="{{ cartproduct.name }}">
+                            <p>{{cartproduct.name}}</p>
+                            {% if app.session.get("cart")[cartproduct.id] is defined %}
+                                <p> x{{ app.session.get("cart")[cartproduct.id] }} </p>
+                            {% endif %}
+                            <a href="{{ path('app_delete_cart', { id: cartproduct.id }) }}"><i class="fa-solid fa-trash"></i></a>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+            <form class="cart-validation" action="{{ path('app_order_validation') }}">
+                <div class="input-box">
+                    <input type="submit" id="validation" value="Commmander"></input>
+                </div>
+            </form>
+        </div>
+    </main>
+{% endblock %}

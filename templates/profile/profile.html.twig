@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProfileController!{% endblock %}
+
+{% block body %}
+    <div class="banner">
+        <div class="banner-content">
+            <h2>Accueil</h2>
+            <span>Vous trouverez ici l'actualité du serveur</span>
+        </div>    
+    </div>
+    <main class="main-container">
+        <div class="userbox account-infos">
+            <h2>Mon compte</h2>
+            <div class="flex-account">
+                <div>
+                    <p>Nom d'utilisateur : {{ user.username }}</p>
+                    <p>Email : {{ user.email }}</p>
+                    <p>Points de vote : {{ user.votepoints  }}</p>
+                    <p>Points Flyff : {{ user.cashpoints }}</p>
+                </div>
+                <div> 
+                    <h3>Comptes de jeu</h3>
+                    <ul>
+                        {% for gameAccount in user.gameAccounts %}
+                            <li>{{ gameAccount.nickname }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <a href="{{ path('app_logout') }}">
+                <div class="input-box">
+                    <input type="submit" id="logout" value="Deconnexion"></input>
+                </div>  
+            </a>
+        </div>
+    </main>
+{% endblock %}

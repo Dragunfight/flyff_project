@@ -1,0 +1,107 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+    <div class="banner">
+        <div class="banner-content">
+            <h2>Accueil</h2>
+            <span>Vous trouverez ici l'actualité du serveur</span>
+        </div>    
+    </div>
+    <main class="main-container">
+        <div class="flex-home">
+            <div class="left-asides">
+                {% if app.user %}
+                    <aside class="userbox account-infos">
+                        <h2>Mon compte</h2>
+                        <div class="flex-account">
+                            <div>
+                                <p>Username: {{ user.username }}</p>
+                                <p>Email: {{ user.email }}</p>
+                                <p>Points de vote: {{ user.votepoints  }}</p>
+                                <p>Points Flyff: {{ user.cashpoints }}</p>
+                            </div>
+                            <div> 
+                                <h3>Comptes de jeu</h3>
+                                <ul>
+                                    {% for gameAccount in user.gameAccounts %}
+                                        <li>{{ gameAccount.nickname }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                        <a href="{{ path('app_logout') }}">
+                            <div class="input-box">
+                                <input type="submit" id="logout" value="Deconnexion"></input>
+                            </div>  
+                        </a>
+                    </aside>
+                {% else %}
+                    <aside class="userbox">
+                        <a href="{{ path('app_login') }}">Se connecter</a>
+                        <p>ou</p>
+                        <a href="{{ path('app_registration') }}">S'inscrire</a>
+                    </aside>
+                {% endif %}
+                <aside id="siege">
+                    <h3>Siege</h3>
+                    <ul>
+                        <li>Couronne</li>
+                        <li>MVP</li>
+                    </ul>
+                </aside>
+            </div>
+            <ul id="postbox">
+                {% for post in posts %}
+                    <li class="card-flex">
+                        <div class="card show-modale">
+                            <div class="post-img">
+                                {% if post.image starts with "http" %}
+                                    <img src='{{ post.image|default('defaultimage.png') }}'>
+                                {% else %}
+                                    <img src='{{ asset("uploads/posts/" ~ post.image|default('defaultimage.png')) }}' alt="image">
+                                {% endif %}
+                            </div>
+                            <div class="postcontent-flex">
+                                <div class="content">
+                                    <h3>{{ post.title }}</h3>
+                                    <p> Créé le {{ post.createdAt|date("d/m/Y") }} </p>
+                                </div>
+                                <p> {{ post.content|striptags|replace({'&nbsp;': ''})|slice(0, 200) }} </p>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                        <div class="admin-tools">
+                                            <a href="{{ path('app_post_update', { id: post.id }) }}" class="edit-icon"><i class="fa-solid fa-pen"></i></a>
+                                            <a href="{{ path('app_post_delete', { id: post.id }) }}" class="delete-icon"><i class="fa-solid fa-trash"></i></a>
+                                        </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+            <div class="right-asides">
+                <aside id="server-rates">
+                    <h3>Rates</h3>
+                    <ul>
+                        <li>Exp: Perso</li>
+                        <li>Drop: Perso</li>
+                        <li>Penyas: Perso</li>
+                    </ul>
+                </aside>
+                <aside id="server-infos">
+                    <h3>Informations</h3>
+                    <ul>
+                        <li>Etat du serveur:</li>
+                        <li>Joueurs Connectés:</li>
+                        <li>Heure:</li>
+                    </ul>
+                </aside>
+            </div>
+        </div>
+    </main>
+    <div class="modale hidden">
+        <button class="close-modale">&times;</button>
+    </div>
+    <div class="overlay hidden"></div>
+{% endblock %}

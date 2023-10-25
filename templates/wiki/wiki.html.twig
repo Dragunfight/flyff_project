@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello WikiController!{% endblock %}
+
+{% block body %}
+    <div class="banner">
+        <div class="banner-content">
+            <h2>Wiki</h2>
+            <span>Vous trouverez ici les informations sur systèmes et changements apportés au serveur</span>
+        </div>    
+    </div>
+    <main class="main-container">
+        <ul id="wikibox">
+            {% for post in posts %}
+                <li class="card-flex">
+                    <div id="post_{{ post.id }}"class="wiki-card show-modale">
+                        <h2>{{ post.title }}</h2>   
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <div class="admin-tools">
+                                <a href="{{ path('app_post_update', { id: post.id }) }}" class="edit-icon"><i class="fa-solid fa-pen"></i></a>
+                                <a href="{{ path('app_post_delete', { id: post.id }) }}" class="delete-icon"><i class="fa-solid fa-trash"></i></a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </main>
+    <div class="modale hidden">
+        <button class="close-modale">&times;</button>
+    </div>
+    <div class="overlay hidden"></div>
+{% endblock %}

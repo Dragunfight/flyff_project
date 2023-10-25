@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello LadderController!{% endblock %}
+
+{% block body %}
+    <div class="banner">
+        <div class="banner-content">
+            <h2>Classement</h2>
+            <span>Vous trouverez ici le classement des joeurs du serveur</span>
+        </div>    
+    </div>
+    <main class="main-container">
+        <div class="card-flex ladder-card">    
+            <h3>Personnages</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rang</th>
+                        <th>Pseudo</th>
+                        <th>Classe</th>
+                        <th>Guilde</th>
+                        <th>XP</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% set rank = 1 %}
+                    {% for character in characters %}
+                        <tr>
+                            <td>{{ rank }}</td>
+                            <td>{{character.characterName}}</td>
+                            <td>{{character.class}}</td>
+                            <td>{{character.guild}}</td>
+                            <td>{{character.xp}}</td>
+                        </tr>
+                        {% set rank = rank + 1 %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </main>
+{% endblock %}
