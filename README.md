@@ -18,7 +18,7 @@ Avant de commencer, assurez-vous que vous avez les éléments suivants installé
 
 1. Clonez ce référentiel sur votre machine :
 
-- git clone https://github.com/votre-utilisateur/votre-projet.git
+- git clone https://github.com/Dragunfight/flyff_project
 
 
 2. Accédez au répertoire de votre projet :

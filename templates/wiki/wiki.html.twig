@@ -17,6 +17,7 @@
                         <h2>{{ post.title }}</h2>   
                         {% if is_granted('ROLE_ADMIN') %}
                             <div class="admin-tools">
+                                <a href="{{ path('app_post_create') }}" class="add-icon"><i class="fa-solid fa-plus"></i></a>
                                 <a href="{{ path('app_post_update', { id: post.id }) }}" class="edit-icon"><i class="fa-solid fa-pen"></i></a>
                                 <a href="{{ path('app_post_delete', { id: post.id }) }}" class="delete-icon"><i class="fa-solid fa-trash"></i></a>
                             </div>

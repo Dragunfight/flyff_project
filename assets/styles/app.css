@@ -40,9 +40,11 @@ input[type="submit"]:hover {
 
 .main-container {
     padding: 2rem 3rem;
+    min-height: 100vh;
+    max-height: 100%;
 }
 
-/**** NAVBAR ****/
+/**** HEADER ****/
 #navbar {
     position: fixed;
     top:0;
@@ -305,6 +307,10 @@ input[type="submit"]:hover {
     display: none;
 }
 
+.no-scroll {
+    overflow: hidden;
+}
+
 .modale {
     position: absolute;
     top: 50%;
@@ -348,7 +354,7 @@ input[type="submit"]:hover {
     position: relative;
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-direction: column;
     gap: 2rem;
@@ -427,8 +433,6 @@ form[name="product_category_form"] input {
     background-color: #6C6454;
     color: #aaa;
     font-weight: 600;
-    font-size: 1.35em;
-    letter-spacing: 0.05em;
     cursor: pointer;
 }
 
@@ -482,10 +486,30 @@ td {
 
 
 /**** SHOP ****/
+.filter-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
 .box-shadow {
     box-shadow: 0 0.5rem 1rem rgba(0,0,0,.15);
     border-radius: 0.5rem;
     background-color: #f7e1a5;
+}
+
+.admin-shop ul {
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.admin-shop li {
+    width: 70%;
+    text-align: center;
+    margin-bottom: 0.5rem;
 }
 
 .category-list {
@@ -527,6 +551,7 @@ td {
     text-align: center;
     border-radius: 0.5rem;
     background-color: #f7e1a5;
+    display: flex;
 }
 
 .item-card:hover {
@@ -546,6 +571,7 @@ td {
 
 .cart-list img {
     width: 2.5rem;
+    height: 2.5rem;
     background-color: #f7e1a5;
 }
 
@@ -561,6 +587,49 @@ td {
 .cart-validation {
     padding: 1rem;
 }
+
+/**** ScrollToTop ****/
+.scrollToTop {
+    position: fixed;
+    bottom: 100px;
+    right: 50px;
+    background-color: #DECA94;
+    color: black;
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 50;
+}
+
+.scrollToTop:hover {
+    opacity: 0.8;
+}
+
+/**** FOOTER ****/
+.footer {
+    background: #212529;
+    padding: 1rem 5rem;
+    text-align: center;
+}
+
+.footer-social li {
+    display: inline-block;
+    padding: 0.5rem;
+}
+
+.footer-social a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.copyrights {
+    font-size: x-small;
+}
+
+
 
 @media only screen and (min-device-width : 768px) {
     /**** HOME ****/
@@ -589,6 +658,7 @@ td {
         width: 15rem;
     }
 }
+
 
 
 @media only screen and (min-device-width : 1024px) {

@@ -8,6 +8,7 @@ const showModale = document.querySelectorAll('.show-modale');
 const closeModale = document.querySelector('.close-modale');
 const editIcons = document.querySelectorAll('.edit-icon');
 const deleteIcons = document.querySelectorAll('.delete-icon');
+const scrollToTop = document.querySelector('.scrollToTop');
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -37,11 +38,13 @@ document.addEventListener("DOMContentLoaded", function () {
   function openModale() {
     modale.classList.remove('hidden');
     overlay.classList.remove('hidden');
+    document.body.classList.add("no-scroll");
   }
 
   function closeModale() {
       modale.classList.add('hidden');
       overlay.classList.add('hidden');
+      document.body.classList.remove("no-scroll");
   }
 
   for (let i = 0; i < showModale.length; i++) {
@@ -58,6 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
   });
 
+
   // Ne pas ouvrir la modale sur les boutons edit/delete
     editIcons.forEach(editIcon => {
       editIcon.addEventListener('click', function (event) {
@@ -70,4 +74,22 @@ document.addEventListener("DOMContentLoaded", function () {
           event.stopPropagation(); 
       });
     });
+
+
+    // Scroll To Top Event
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+          scrollToTop.classList.remove('hidden');
+      } else {
+          scrollToTop.classList.add('hidden');
+      }
+    });
+
+    scrollToTop.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });     
+    }); 
+    
 });

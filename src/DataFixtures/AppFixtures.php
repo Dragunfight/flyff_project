@@ -33,14 +33,13 @@ class AppFixtures extends Fixture
         $faker = Faker\Factory::create();
 
         // Création Users simple & admin
-
         $admintest = new User();
         $admintest->setUsername("admintest");
         $admintest->setEmail("admintest@test.fr");
         $admintest->setPassword($this->userPasswordHasherInterface->hashPassword($admintest, "admintest"));
         $admintest->setRoles(["ROLE_ADMIN"]);
         $admintest->setVotepoints(0);
-        $admintest->setCashpoints(0);
+        $admintest->setCashpoints(1000);
         $manager->persist($admintest);
 
         $usertest = new User();
@@ -49,7 +48,7 @@ class AppFixtures extends Fixture
         $usertest->setPassword($this->userPasswordHasherInterface->hashPassword($usertest, "usertest"));
         $usertest->setRoles(["ROLE_USER"]);
         $usertest->setVotepoints(0);
-        $usertest->setCashpoints(0);
+        $usertest->setCashpoints(1000);
         $manager->persist($usertest);
 
 
