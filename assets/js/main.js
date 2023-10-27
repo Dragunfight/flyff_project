@@ -51,9 +51,14 @@ document.addEventListener("DOMContentLoaded", function () {
       showModale[i].addEventListener('click', openModale);
   }
 
-  modale.addEventListener('click', openModale);
-  modale.addEventListener('click', closeModale);
-  overlay.addEventListener('click', closeModale);
+  if(modale) {
+    modale.addEventListener('click', openModale);
+    modale.addEventListener('click', closeModale);
+  }
+
+  if(overlay) {
+    overlay.addEventListener('click', closeModale);
+  }
 
   document.addEventListener('keydown', function (event) {
       if (event.key === 'Escape' && !modale.classList.contains('hidden')) {

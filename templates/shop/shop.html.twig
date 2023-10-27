@@ -12,25 +12,27 @@
     <main class="main-container">
         <div class="card-flex flex-container">
             <div class="filter-container">
-                <div class="admin-shop box-shadow">
-                    <h2>Création</h2>
-                    <ul>
-                        <li>
-                            <a href="{{ path('app_product_category_create') }}">
-                                <div class="input-box">
-                                    <input type="submit" value="Categorie"></input>
-                                </div>  
-                            </a>                        
-                        </li>
-                        <li>
-                            <a href="{{ path('app_product_create') }}">
-                                <div class="input-box">
-                                    <input type="submit" value="Produit"></input>
-                                </div>  
-                            </a>                        
-                        </li>
-                    </ul>
-                </div>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <div class="admin-shop box-shadow">
+                        <h2>Création</h2>
+                        <ul>
+                            <li>
+                                <a href="{{ path('app_product_category_create') }}">
+                                    <div class="input-box">
+                                        <input type="submit" value="Categorie"></input>
+                                    </div>  
+                                </a>                        
+                            </li>
+                            <li>
+                                <a href="{{ path('app_product_create') }}">
+                                    <div class="input-box">
+                                        <input type="submit" value="Produit"></input>
+                                    </div>  
+                                </a>                        
+                            </li>
+                        </ul>
+                    </div>
+                {% endif %}
                 <div class="box-shadow">
                     <h2>Filtre</h2>
                     <ul class="category-list">

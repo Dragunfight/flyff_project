@@ -631,7 +631,7 @@ td {
 
 
 
-@media only screen and (min-device-width : 768px) {
+@media only screen and (min-width : 768px) {
     /**** HOME ****/
     #postbox .card-flex {
         padding: 0;
@@ -661,7 +661,7 @@ td {
 
 
 
-@media only screen and (min-device-width : 1024px) {
+@media only screen and (min-width : 1024px) {
     /**** HEADER ****/
     .nav-list {
         display: block;
