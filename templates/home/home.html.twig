@@ -3,6 +3,7 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
+    {# Banière du site #}
     <div class="banner">
         <div class="banner-content">
             <h2>Accueil</h2>
@@ -13,15 +14,16 @@
         <div class="flex-home">
             <div class="left-asides">
                 {% if app.user %}
+                    {# Boite d'information de l'utilisateur si Connectés #}
                     <aside class="userbox account-infos">
                         <h2>Mon compte</h2>
                         <div class="flex-account">
-                            <div>
-                                <p>Username: {{ user.username }}</p>
-                                <p>Email: {{ user.email }}</p>
-                                <p>Points de vote: {{ user.votepoints  }}</p>
-                                <p>Points Flyff: {{ user.cashpoints }}</p>
-                            </div>
+                            <ul>
+                                <li>Username: {{ user.username }}</li>
+                                <li>Email: {{ user.email }}</li>
+                                <li>Points de vote: {{ user.votepoints  }}</li>
+                                <li>Points Flyff: {{ user.cashpoints }}</li>
+                            </ul>
                             <div> 
                                 <h3>Comptes de jeu</h3>
                                 <ul>
@@ -31,19 +33,23 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="{{ path('app_logout') }}">
+                        {# Deconnexion #}
+                        <a href="{{ path('app_logout') }}" title="Se deconnecter">
                             <div class="input-box">
+                                <label hidden>Deconnecter</label>
                                 <input type="submit" id="logout" value="Deconnexion"></input>
                             </div>  
                         </a>
                     </aside>
                 {% else %}
+                    {# Boite d'inscription ou connexion si déconnecté #}
                     <aside class="userbox">
-                        <a href="{{ path('app_login') }}">Se connecter</a>
+                        <a href="{{ path('app_login') }}" title="Se connecter">Se connecter</a>
                         <p>ou</p>
-                        <a href="{{ path('app_registration') }}">S'inscrire</a>
+                        <a href="{{ path('app_registration') }}" title="S'inscrire">S'inscrire</a>
                     </aside>
                 {% endif %}
+                {# Boite d'information GS sur le serveur #}
                 <aside id="siege">
                     <h3>Siege</h3>
                     <ul>
@@ -52,9 +58,10 @@
                     </ul>
                 </aside>
             </div>
-            <ul id="postbox">
+            {# Section News du serveur #}
+            <section id="postbox">
                 {% for post in posts %}
-                    <li class="card-flex">
+                    <article class="card-flex">
                         <div class="card show-modale">
                             <div class="post-img">
                                 {% if post.image starts with "http" %}
@@ -71,16 +78,17 @@
                                 <p> {{ post.content|striptags|replace({'&nbsp;': ''})|slice(0, 200) }} </p>
                                 {% if is_granted('ROLE_ADMIN') %}
                                         <div class="admin-tools">
-                                            <a href="{{ path('app_post_create') }}" class="add-icon"><i class="fa-solid fa-plus"></i></a>
-                                            <a href="{{ path('app_post_update', { id: post.id }) }}" class="edit-icon"><i class="fa-solid fa-pen"></i></a>
-                                            <a href="{{ path('app_post_delete', { id: post.id }) }}" class="delete-icon"><i class="fa-solid fa-trash"></i></a>
+                                            <a href="{{ path('app_post_create') }}" class="add-icon" title="Créer"><i class="fa-solid fa-plus"></i></a>
+                                            <a href="{{ path('app_post_update', { id: post.id }) }}" class="edit-icon" title="Mettre à jour"><i class="fa-solid fa-pen"></i></a>
+                                            <a href="{{ path('app_post_delete', { id: post.id }) }}" class="delete-icon" title="Supprimer"><i class="fa-solid fa-trash"></i></a>
                                         </div>
                                 {% endif %}
                             </div>
                         </div>
-                    </li>
+                    </article>
                 {% endfor %}
-            </ul>
+            </section>
+            {# Boite d'information Rates sur le serveur #}
             <div class="right-asides">
                 <aside id="server-rates">
                     <h3>Rates</h3>
@@ -101,8 +109,10 @@
             </div>
         </div>
     </main>
+    {# modale #}
     <div class="modale hidden">
         <button class="close-modale">&times;</button>
     </div>
+    {# overlay ouverture/fermeture modale #}
     <div class="overlay hidden"></div>
 {% endblock %}

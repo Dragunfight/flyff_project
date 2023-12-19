@@ -3,6 +3,7 @@
 {% block title %}Hello CartController!{% endblock %}
 
 {% block body %}
+    {# Bannière du site #}
     <div class="banner">
         <div class="banner-content">
             <h2>Cart</h2>
@@ -10,6 +11,7 @@
         </div>    
     </div>
     <main class="main-container">
+    {# Panier #}
         <div class="box-shadow">
             <h2>Panier</h2>
             <ul class="cart-list">
@@ -21,13 +23,15 @@
                             {% if app.session.get("cart")[cartproduct.id] is defined %}
                                 <p> x{{ app.session.get("cart")[cartproduct.id] }} </p>
                             {% endif %}
-                            <a href="{{ path('app_delete_cart', { id: cartproduct.id }) }}"><i class="fa-solid fa-trash"></i></a>
+                            <a href="{{ path('app_delete_cart', { id: cartproduct.id }) }}" title="Supprimer"><i class="fa-solid fa-trash"></i></a>
                         </div>
                     </li>
                 {% endfor %}
             </ul>
+            {# Formulaire de validation du panier  #}
             <form class="cart-validation" action="{{ path('app_order_validation') }}">
                 <div class="input-box">
+                    <label hidden>Commander</label>
                     <input type="submit" id="validation" value="Commmander"></input>
                 </div>
             </form>

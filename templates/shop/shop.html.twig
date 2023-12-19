@@ -3,6 +3,7 @@
 {% block title %}Boutique{% endblock %}
 
 {% block body %}
+    {# Banière du site #}
     <div class="banner">
         <div class="banner-content">
             <h2>Shop</h2>
@@ -10,22 +11,27 @@
         </div>    
     </div>
     <main class="main-container">
+        {# Panel administrateur #}
         <div class="card-flex flex-container">
             <div class="filter-container">
                 {% if is_granted('ROLE_ADMIN') %}
                     <div class="admin-shop box-shadow">
                         <h2>Création</h2>
                         <ul>
+                            {# Création Categories #}
                             <li>
-                                <a href="{{ path('app_product_category_create') }}">
+                                <a href="{{ path('app_product_category_create') }}" title="Création de catégorie">
                                     <div class="input-box">
+                                        <label hidden>Créer Catégorie</label>
                                         <input type="submit" value="Categorie"></input>
                                     </div>  
                                 </a>                        
                             </li>
+                            {# Création Produits #}
                             <li>
-                                <a href="{{ path('app_product_create') }}">
+                                <a href="{{ path('app_product_create') }}" title="Création de produit">
                                     <div class="input-box">
+                                        <label hidden>Créer Produit</label>
                                         <input type="submit" value="Produit"></input>
                                     </div>  
                                 </a>                        
@@ -33,16 +39,18 @@
                         </ul>
                     </div>
                 {% endif %}
+                {# Filtre de categories #}
                 <div class="box-shadow">
                     <h2>Filtre</h2>
                     <ul class="category-list">
-                        <li><a href="{{ path('app_shop') }}">All</a></li>
+                        <li><a href="{{ path('app_shop') }}" title="Affichage de tous les produits">All</a></li>
                         {% for category in categories %}
-                            <li><a href="{{ path('app_shop', {'category': category.id }) }}">{{ category.name }}</a></li>
+                            <li><a href="{{ path('app_shop', {'category': category.id }) }}" title="Affichage des produits de la catégorie">{{ category.name }}</a></li>
                         {% endfor %}
                     </ul>
                 </div>
             </div>
+            {# Liste des produits #}
             <div class="flex-container item-list"> 
                 {% for product in products %}
                     <div class="item-card">
@@ -52,6 +60,7 @@
                             <p>{{ product.price }} CP</p>
                             <form action="{{ path('app_add_cart', { id : product.id }) }}">
                                 <div class="input-box">
+                                    <label hidden>Ajout du produit</label>
                                     <input id="addButton{{product.id}}" type="submit" value="Ajouter"></input>
                                 </div>
                             </form>
@@ -59,6 +68,7 @@
                     </div>
                 {% endfor %}
             </div>
+            {# Panier #}
             <div class="cart-container">
                 <div class="box-shadow">
                     <h2>Panier</h2>
@@ -71,13 +81,15 @@
                                     {% if app.session.get("cart")[cartproduct.id] is defined %}
                                         <p> x{{ app.session.get("cart")[cartproduct.id] }} </p>
                                     {% endif %}
-                                    <a href="{{ path('app_delete_cart', { id: cartproduct.id }) }}" class="delete-icon"><i class="fa-solid fa-trash"></i></a>
+                                    <a href="{{ path('app_delete_cart', { id: cartproduct.id }) }}" class="delete-icon" title="Supprimer le produit"><i class="fa-solid fa-trash"></i></a>
                                 </div>
                             </li>
                         {% endfor %}
                     </ul>
+                    {# Formulaire de validation de commande #}
                     <form class="cart-validation" action="{{ path('app_order_validation') }}">
                         <div class="input-box">
+                            <label hidden>Commander</label>
                             <input type="submit" id="validation" value="Commmander"></input>
                         </div>
                     </form>
@@ -85,9 +97,11 @@
             </div>
         </div>
     </main>
+    {# modale détail produits #}
     <div class="modale hidden">
         <button class="close-modale">&times;</button>
     </div>
+    {# overlay modale #}
     <div class="overlay hidden"></div>
 {% endblock %}
 

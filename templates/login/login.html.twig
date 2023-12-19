@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    {# Banière du site #}
     <div class="banner">
         <div class="banner-content">
             <h2>Login</h2>
@@ -8,6 +9,7 @@
         </div>    
     </div>
     <main class="main-container">
+    {# formulaire de connexion #}
         <div class="form-card">
             <div class="form-content">
                 <h2>LOGIN</h2>
@@ -23,8 +25,10 @@
                         <i>Password</i>
                     </div>
                     <div class="input-box">
+                        <label hidden>Se connecter</label>
                         <input type="submit" value="Login">
                     </div>
+                    {# Boite d'inscription #}
                     <div class="register-box">
                         <p>Vous n'avez pas encore de compte? <a href="{{ path('app_registration') }}">Register</a></p>
                     </div>

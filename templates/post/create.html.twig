@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    {# Banière du site #}
     <div class="banner">
         <div class="banner-content">
             <h2>Create</h2>
@@ -8,6 +9,7 @@
         </div>    
     </div>
     <main class="main-container">
+        {# formulaire de création des posts #}
         <div class="form-card">
             <div class="form-content">
                 <h2>CREATE</h2>
@@ -17,6 +19,7 @@
                     {{ form_row(createpostform.content) }}
                     {{ form_row(createpostform.image) }}
                     <div class="input-box">
+                        <label hidden>Créer</label>
                         <input type="submit" value="Create">
                     </div>
                 {{ form_end(createpostform) }}
